@@ -12,12 +12,13 @@ Python Pagination is a simple utility for managing and displaying paginated data
 
 ## Installation
 
-```bash
+```bash```
 pip install python-pagination
 
 ## Usage
 
-```python 
+```python
+
 from pagination import Paginator
 
 # Your data to be paginated
@@ -38,4 +39,3 @@ print(f"Page {paginator.get_current_page_number()} of {total_pages}")
 # Iterate over the current page data
 for item in current_page_data:
     print(item)
-
