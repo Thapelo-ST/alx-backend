@@ -2,6 +2,8 @@
 import csv
 #import math
 from typing import List
+"""Server class to paginate a database of popular baby names.
+"""
 
 
 class Server:

@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import csv
-import math
+#import math
 from typing import List
+"""Server class to paginate a database of popular baby names.
+"""
 
 
 class Server:
