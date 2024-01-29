@@ -40,22 +40,21 @@ class Server:
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> dict:
         assert index is None or isinstance(index, int)
         assert page_size > 0
-        
+
         data_length = len(self.dataset())
-        
+
         if index is None:
             index = 0
         else:
             assert 0 <= index < data_length
-        
+
         next_idx = min(index + page_size, data_length)
         data_page = self.dataset()[index:next_idx]
-        
+
         dictionary = {
             "index": index,
             "data": data_page,
             "page_size": page_size,
             "next_index": next_idx
         }
-        
         return dictionary

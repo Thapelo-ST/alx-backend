@@ -39,7 +39,7 @@ class Server:
         start_index = (page - 1) * page_size
         end_index = page * page_size
         return (start_index, end_index)
-    
+
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """gets the page data that in the inserted arguments
 
@@ -54,7 +54,7 @@ class Server:
             List[List]: data that is needed to print
         """
         if not isinstance(page, int) or page <= 0 or not isinstance(
-            page_size, int):
+                 page_size, int):
             raise AssertionError
 
         page_number, data_to_print = self.index_range(page, page_size)

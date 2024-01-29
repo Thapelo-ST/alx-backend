@@ -39,7 +39,7 @@ class Server:
         start_index = (page - 1) * page_size
         end_index = page * page_size
         return (start_index, end_index)
-    
+
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """gets the page data that in the inserted arguments
 
@@ -54,7 +54,7 @@ class Server:
             List[List]: data that is needed to print
         """
         if not isinstance(page, int) or page <= 0 or not isinstance(
-            page_size, int):
+                page_size, int):
             raise AssertionError
 
         page_number, data_to_print = self.index_range(page, page_size)
@@ -62,12 +62,13 @@ class Server:
         data_in_page = self.dataset()[page_number:data_to_print]
 
         return data_in_page
+
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
         """takes arguments turns them into a dictionary for pages
 
         Args:
             page (int, optional): page number. Defaults to 1.
-            page_size (int, optional): page size as in data of a page. Defaults to 10.
+            page_size (int, optional): page size as in data of a page. Def 10
 
         Raises:
             AssertionError: provides error  message when inputs are invalid
@@ -76,7 +77,7 @@ class Server:
             dict: dictionary of the inserted data
         """
         if not isinstance(page, int) or page <= 0 or not isinstance(
-            page_size, int):
+                page_size, int):
             raise AssertionError
 
         data_page = self.get_page(page, page_size)
@@ -91,7 +92,7 @@ class Server:
             "data": self.get_page(page, page_size),
             "prev_page": previous_page,
             "next_page": next_page,
-            "total_pages" : total_pages
+            "total_pages": total_pages
         }
 
         return dictionary

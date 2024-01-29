@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 ''' first helper of the project just returns a rutple '''
 
+
 def index_range(page: int, page_size: int) -> tuple:
     """
     takes page number and multiplies it by page size to get actual
