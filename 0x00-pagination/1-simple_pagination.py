@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import csv
-#import math
 from typing import List
 """Server class to paginate a database of popular baby names.
 """
@@ -14,7 +13,7 @@ class Server:
     def __init__(self):
         self.__dataset = None
 
-    def dataset(self) -> List[List]:
+    def dataset(self) -> List[list]:
         """Cached dataset
         """
         if self.__dataset is None:
@@ -54,7 +53,8 @@ class Server:
         Returns:
             List[List]: data that is needed to print
         """
-        if not isinstance(page, int) or page <= 0 or not isinstance(page_size, int):
+        if not isinstance(page, int) or page <= 0 or not isinstance(
+            page_size, int):
             raise AssertionError
 
         page_number, data_to_print = self.index_range(page, page_size)

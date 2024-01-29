@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import csv
-#import math
 from typing import List
 """Server class to paginate a database of popular baby names.
 """
@@ -54,7 +53,8 @@ class Server:
         Returns:
             List[List]: data that is needed to print
         """
-        if not isinstance(page, int) or page <= 0 or not isinstance(page_size, int):
+        if not isinstance(page, int) or page <= 0 or not isinstance(
+            page_size, int):
             raise AssertionError
 
         page_number, data_to_print = self.index_range(page, page_size)
@@ -75,15 +75,16 @@ class Server:
         Returns:
             dict: dictionary of the inserted data
         """
-        if not isinstance(page, int) or page <= 0 or not isinstance(page_size, int):
-                raise AssertionError
-        
+        if not isinstance(page, int) or page <= 0 or not isinstance(
+            page_size, int):
+            raise AssertionError
+
         data_page = self.get_page(page, page_size)
-        
+
         total_pages = len(self.dataset()) // page_size + 1
         previous_page = max(1, page - 1) if page > 1 else None
         next_page = page + 1 if page < total_pages else None
-        
+
         dictionary = {
             "page_size": len(data_page),
             "page": page,
@@ -92,5 +93,5 @@ class Server:
             "next_page": next_page,
             "total_pages" : total_pages
         }
-        
+
         return dictionary
