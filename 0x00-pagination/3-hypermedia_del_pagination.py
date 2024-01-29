@@ -38,6 +38,15 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> dict:
+        """gets index and manages to automate the next page
+
+        Args:
+            index (int, optional): index to get. Defaults to None.
+            page_size (int, optional): data to print. Defaults to 10.
+
+        Returns:
+            dict: data returned
+        """
         assert index is None or isinstance(index, int)
         assert page_size > 0
 
