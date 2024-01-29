@@ -40,11 +40,23 @@ class Server:
         return (start_index, end_index)
     
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            if not isinstance(page, int) or page <= 0 or not isinstance(page_size, int):
-                raise AssertionError
+        """gets the page data that in the inserted arguments
 
-            page_number, data_to_print = self.index_range(page, page_size)
+        Args:
+            page (int, optional): page number. Defaults to 1.
+            page_size (int, optional): data size to be prited. Defaults to 10.
 
-            data_in_page = self.dataset()[page_number:data_to_print]
+        Raises:
+            AssertionError: prints an error incases of an invalid argument
 
-            return data_in_page
+        Returns:
+            List[List]: data that is needed to print
+        """
+        if not isinstance(page, int) or page <= 0 or not isinstance(page_size, int):
+            raise AssertionError
+
+        page_number, data_to_print = self.index_range(page, page_size)
+
+        data_in_page = self.dataset()[page_number:data_to_print]
+
+        return data_in_page

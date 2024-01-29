@@ -5,7 +5,7 @@ Python Pagination is a simple utility for managing and displaying paginated data
 ## Features
 
 - **Easy Integration:** Quickly integrate pagination into your Python projects with minimal code.
-  
+
 - **Customizable:** Adjust the pagination settings such as the number of items per page to suit your application's needs.
 
 - **User-Friendly Navigation:** Provide a seamless experience for users to navigate through pages of data.
