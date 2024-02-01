@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from base_caching import BaseCaching
 """LIFO caching class inheriting from BaseCaching class"""
+from base_caching import BaseCaching
 
 
 class LIFOCache(BaseCaching):
