@@ -2,7 +2,7 @@
 """
 FIFO cache inheriting from BaseCaching
 """
-from BaseCaching import BaseCaching
+from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):

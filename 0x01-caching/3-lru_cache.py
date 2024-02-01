@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from collections import OrderedDict
-from BaseCaching import BaseCaching
+from base_caching import BaseCaching
 """LRU inheriting from Base caching"""
 
 

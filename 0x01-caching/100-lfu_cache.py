@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from BaseCaching import BaseCaching
+from base_caching import BaseCaching
 from collections import defaultdict
 """LFU cache class inheriting from BaseCaching"""
 
