@@ -10,4 +10,4 @@ The cache implementations are designed for efficient data storage and retrieval 
 
 - LFUCache uses the Least Frequently Used algorithm, discarding the least frequently accessed items, resolving ties with the Least Recently Used method.
 
-Each implementation inherits from BaseCaching and is geared towards optimizing cache performance in diverse scenarios.//------------------------------------------------------------------------------
+Each implementation inherits from BaseCaching and is geared towards optimizing cache performance in diverse scenarios.
