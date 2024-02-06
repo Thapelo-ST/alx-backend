@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 '''a user login system is outside the scope of this project
 '''
+
 from typing import Dict, Union
 from flask import Flask, render_template, request, g
-from flask_babel import Babel
+from flask_babel import Babel, format_datetime
+import pytz
+from datetime import datetime
 
 
 class Config:
@@ -37,6 +40,22 @@ def get_user() -> Union[Dict, None]:
     return None
 
 
+def validate_timezone(timezone: str) -> str:
+    """Validates if the provided timezone is a valid timezone using pytz.
+
+    Args:
+        timezone (str): Timezone string.
+
+    Returns:
+        str: Validated timezone or default to UTC.
+    """
+    try:
+        pytz.timezone(timezone)
+        return timezone
+    except pytz.exceptions.UnknownTimeZoneError:
+        return "UTC"
+
+
 @app.before_request
 def before_request() -> None:
     """performs some routines before each request's resolution.
@@ -57,6 +76,38 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
+@babel.timezoneselector
+def get_timezone() -> str:
+    """Retrieves the timezone for a web page.
+
+    Returns:
+        str: Best match timezone or default to UTC.
+    """
+    timezone_from_url = request.args.get('timezone')
+    if timezone_from_url:
+        return validate_timezone(timezone_from_url)
+
+    if g.user and g.user.get('timezone'):
+        user_timezone = g.user.get('timezone')
+    else:
+        None
+    if user_timezone:
+        return validate_timezone(user_timezone)
+
+    return "UTC"
+
+
+@babel.timezoneselector
+def get_current_time() -> str:
+    """Retrieves the current time based on the inferred timezone.
+
+    Returns:
+        str: Formatted current time.
+    """
+    current_time = datetime.now(pytz.timezone(get_timezone()))
+    return format_datetime(current_time, format='medium')
+
+
 @app.route('/')
 def index() -> str:
     '''default route
@@ -64,7 +115,7 @@ def index() -> str:
     Returns:
         html: homepage
     '''
-    return render_template("5-index.html")
+    return render_template("index.html", current_time=get_current_time())
 
 
 if __name__ == "__main__":

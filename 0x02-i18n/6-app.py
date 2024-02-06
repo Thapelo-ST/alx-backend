@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 '''a user login system is outside the scope of this project
 '''
+
 from typing import Dict, Union
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
@@ -51,10 +52,23 @@ def get_locale() -> str:
     Returns:
         str: best match
     """
-    locale = request.args.get('locale')
-    if locale in app.config['LANGUAGES']:
-        return locale
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    locale_from_url = request.args.get('locale')
+    if locale_from_url and locale_from_url in app.config['LANGUAGES']:
+        return locale_from_url
+
+    if g.user and g.user.get('locale') in app.config['LANGUAGES']:
+        user_locale = g.user.get('locale')
+    else:
+        None
+    if user_locale:
+        return user_locale
+
+    locale_from_header = request.accept_languages.best_match(
+            app.config['LANGUAGES'])
+    if locale_from_header:
+        return locale_from_header
+
+    return app.config['BABEL_DEFAULT_LOCALE']
 
 
 @app.route('/')
@@ -64,7 +78,7 @@ def index() -> str:
     Returns:
         html: homepage
     '''
-    return render_template("5-index.html")
+    return render_template("6-index.html")
 
 
 if __name__ == "__main__":
